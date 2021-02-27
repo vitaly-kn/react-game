@@ -1,0 +1,89 @@
+.Apple {
+  position: absolute;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-name: left-right-frames;
+}
+
+@keyframes left-right-frames {
+  from {
+    left: 5%;
+  }
+  to {
+    left: 95%;
+  }
+}
+
+.apple-image {
+  position: absolute;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  animation-duration: 3s;
+  top: 49rem;
+  width: 3.5rem;
+}
+
+.trajet1 {
+  animation-duration: 15s;
+}
+
+.trajet1 .apple-image {
+  animation-name: up-down-frames1;
+}
+
+@keyframes up-down-frames1 {
+  0% {
+    top: 49rem;
+  }
+  50% {
+    animation-timing-function: ease-in;
+    top: 7.7rem;
+  }
+  100% {
+    top: 49rem;
+  }
+}
+
+.trajet2 {
+  animation-duration: 9s;
+  animation-delay: 3s;
+}
+
+.trajet2 .apple-image {
+  animation-name: up-down-frames2;
+  animation-delay: 3s;
+}
+@keyframes up-down-frames2 {
+  0% {
+    top: 49rem;
+  }
+  50% {
+    animation-timing-function: ease-in;
+    top: 15rem;
+  }
+  100% {
+    top: 49rem;
+  }
+}
+
+.trajet3 {
+  animation-duration: 12s;
+  animation-delay: 5s;
+}
+
+.trajet3 .apple-image {
+  animation-name: up-down-frames3;
+  animation-delay: 5s;
+}
+@keyframes up-down-frames3 {
+  0% {
+    top: 49rem;
+  }
+  50% {
+    animation-timing-function: ease-in;
+    top: 20rem;
+  }
+  100% {
+    top: 49rem;
+  }
+}
