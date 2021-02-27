@@ -1,0 +1,36 @@
+@font-face {
+  font-family: Acme;
+  src: url(./assets/fonts/Acme-Regular.ttf);
+}
+
+:root {
+  --basic-application-width: 1024;
+  --basic-font-size: 10;
+  --main-text-color: yellowgreen;
+  --main-background-color: #282c34;
+  --controls-background-color: antiquewhite;
+  --scorebar-text-color: black;
+  --score-amount-color: yellow;
+  --tries-amount-color: cyan;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Acme, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: calc(1vw * var(--basic-font-size) * 100 / var(--basic-application-width));
+  height: 100%;
+  color: var(--main-text-color);
+  background-color: var(--main-background-color);
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 10px;
+  }
+}

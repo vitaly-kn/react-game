@@ -1,0 +1,19 @@
+.ControlsBox {
+  flex-basis: 25.6rem;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--controls-background-color);
+  box-shadow: inset 0.5rem 0px 1rem rgba(0, 0, 0, 0.2);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons * {
+  width: 100%;
+}

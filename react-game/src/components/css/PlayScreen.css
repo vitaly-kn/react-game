@@ -1,0 +1,24 @@
+.PlayScreen {
+  position: relative;
+  flex-basis: 76.8rem;
+  height: 100%;
+  overflow: hidden;
+  background-image: url("../../assets/img/kitchen.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.dresser {
+  position: absolute;
+  top: 51.5%;
+  left: -21%;
+  height: 50rem;
+}
+
+.stove {
+  position: absolute;
+  top: 50%;
+  left: 82%;
+  height: 33rem;
+}
