@@ -1,6 +1,7 @@
 .Game {
   width: 102.4rem;
   height: 57.6rem;
+  box-sizing: border-box;
   position: relative;
   border: 0.5rem solid rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 2rem rgba(255, 255, 255, 0.2);

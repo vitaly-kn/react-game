@@ -1,5 +1,5 @@
 .ControlsBox {
-  flex-basis: 25.6rem;
+  flex-grow: 1;
   height: inherit;
   display: flex;
   flex-direction: column;
@@ -12,6 +12,7 @@
 .buttons {
   display: flex;
   flex-direction: column;
+  padding-bottom: 1rem;
 }
 
 .buttons * {

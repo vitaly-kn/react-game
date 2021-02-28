@@ -14,7 +14,8 @@
   top: 51.5%;
   left: -21%;
   height: 50rem;
-  z-index: 2;
+  z-index: 3;
+  pointer-events: none;
 }
 
 .stove {
@@ -22,7 +23,8 @@
   top: 50%;
   left: 82%;
   height: 33rem;
-  z-index: 2;
+  z-index: 3;
+  pointer-events: none;
 }
 
 .appleContainer {

@@ -3,6 +3,7 @@
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-name: left-right-frames;
+  z-index: 2;
 }
 
 @keyframes left-right-frames {
@@ -23,11 +24,11 @@
   width: 3.5rem;
 }
 
-.trajet1 {
+.trajectory1 {
   animation-duration: 15s;
 }
 
-.trajet1 .apple-image {
+.trajectory1 .apple-image {
   animation-name: up-down-frames1;
 }
 
@@ -44,12 +45,12 @@
   }
 }
 
-.trajet2 {
+.trajectory2 {
   animation-duration: 9s;
   animation-delay: 3s;
 }
 
-.trajet2 .apple-image {
+.trajectory2 .apple-image {
   animation-name: up-down-frames2;
   animation-delay: 3s;
 }
@@ -66,12 +67,12 @@
   }
 }
 
-.trajet3 {
+.trajectory3 {
   animation-duration: 12s;
   animation-delay: 5s;
 }
 
-.trajet3 .apple-image {
+.trajectory3 .apple-image {
   animation-name: up-down-frames3;
   animation-delay: 5s;
 }

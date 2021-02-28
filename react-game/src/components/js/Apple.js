@@ -11,7 +11,7 @@ const apples = {
 
 function Apple(props) {
   return (
-    <div className={`Apple ${props.trajet}`}>
+    <div className={`Apple ${props.trajectory}`}>
       <img className="apple-image" src={apples[props.color]} alt="apple" />
     </div>
   );

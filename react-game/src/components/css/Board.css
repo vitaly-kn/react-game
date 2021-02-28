@@ -1,0 +1,17 @@
+.Board {
+  position: absolute;
+  top: 48rem;
+  left: 19%;
+  width: 66%;
+  height: 9rem;
+  z-index: 1;
+}
+
+.board-image {
+  width: 15rem;
+  position: absolute;
+  top: 3rem;
+  left: 0;
+  transition: left 0.3s ease-in-out;
+  pointer-events: none;
+}
