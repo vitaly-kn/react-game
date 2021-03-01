@@ -11,7 +11,7 @@ const apples = {
 
 function Apple(props) {
   return (
-    <div className={`Apple ${props.trajectory}`}>
+    <div className={`Apple ${props.trajectory}`} onAnimationEnd={props.onAnimationEnd} data-key={props.dataKey}>
       <img className="apple-image" src={apples[props.color]} alt="apple" />
     </div>
   );

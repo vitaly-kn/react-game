@@ -2,10 +2,10 @@ import "../css/ControlsBox.css";
 import Button from "./Button";
 import ScoreBar from "./ScoreBar";
 
-function ControlsBox() {
+function ControlsBox(props) {
   return (
     <div className="ControlsBox">
-      <ScoreBar score="0" tries="3" />
+      <ScoreBar score={props.score} tries="3" />
       <div className="buttons">
         <Button id="start" caption="Start" />
         <Button id="pause" caption="Pause" />
