@@ -9,7 +9,6 @@ const maxBoardLeft = 36;
 function Board(props) {
   let [left, setLeft] = useState(0);
   let [keyStuck, setStuck] = useState(false);
-  let [coords, setCoords] = useState({ left, right: left + boardWidth });
 
   useEffect(() => {
     function onKeyDown(event) {
@@ -27,8 +26,6 @@ function Board(props) {
       }
       if (left !== newLeft) {
         setLeft(newLeft);
-        setCoords({ left: newLeft, right: newLeft + boardWidth });
-        //console.log(coords);
       }
     }
 
@@ -45,19 +42,25 @@ function Board(props) {
     };
   });
 
+  useEffect(() => {
+    const boardImageRect = document.getElementById("board-image").getBoundingClientRect();
+    props.onNewBoardCoords({
+      left: boardImageRect.left,
+      right: boardImageRect.right,
+    });
+  });
+
   function onBoardTrackClick(event) {
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
     let newLeft = (event.clientX - event.currentTarget.getBoundingClientRect().x) / rem - boardWidth / 2;
     newLeft = newLeft < 0 ? 0 : newLeft;
     newLeft = newLeft > maxBoardLeft ? maxBoardLeft : newLeft;
-    setCoords({ left: newLeft, right: newLeft + boardWidth });
     setLeft(newLeft);
-    //console.log(coords);
   }
-  console.log(coords);
+
   return (
     <div className="Board" onClick={onBoardTrackClick}>
-      <img className="board-image" style={{ left: `${left}rem` }} src={board} alt="board" />
+      <img className="board-image" id="board-image" style={{ left: `${left}rem` }} src={board} alt="board" />
     </div>
   );
 }
