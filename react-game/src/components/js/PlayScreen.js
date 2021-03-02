@@ -29,7 +29,7 @@ function PlayScreen(props) {
     setBoard(DOMElement);
   }
 
-  function onCadence() {
+  function addNewApple() {
     //console.log(`tick!`);
     const color = colors[getRandomInt(0, colors.length - 1)];
     const trajectory = trajectories[getRandomInt(0, trajectories.length - 1)];
@@ -37,7 +37,7 @@ function PlayScreen(props) {
     return;
   }
 
-  cadencer.setCallback(onCadence);
+  cadencer.setCallback(addNewApple);
 
   useEffect(() => cadencer.start());
 
@@ -46,19 +46,25 @@ function PlayScreen(props) {
     const animation = event.animationName;
     if (animation === animationWin) {
       props.incScore();
-      const key = event.target.dataset.key;
+      removeApple();
+    } else if (animation.includes(animationsJumpTemplate)) {
+      if (isAppleAndBoardCollide()) {
+        restartVerticalAnimation();
+      } else {
+        event.currentTarget.classList.add("fall");
+      }
+    } else {
+      removeApple();
+    }
+
+    function removeApple() {
+      const key = event.currentTarget.dataset.key;
       setNewApples(
         apples.filter((apple) => {
           return Number(apple.key) !== Number(key);
         })
       );
-    } else if (animation.includes(animationsJumpTemplate)) {
-      if (isAppleAndBoardCollide()) {
-        restartVerticalAnimation();
-      }
     }
-
-    //event.currentTarget.classList.remove("freeze");
 
     function restartVerticalAnimation() {
       event.currentTarget.classList.remove(`trajectory${animation[animation.length - 1]}`);

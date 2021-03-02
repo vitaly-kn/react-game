@@ -88,3 +88,15 @@
     top: 49rem;
   }
 }
+
+.fall .apple-image {
+  animation-name: fall-frames;
+  animation-timing-function: linear;
+  animation-duration: 0.27s;
+}
+
+@keyframes fall-frames {
+  to {
+    top: 60rem;
+  }
+}
