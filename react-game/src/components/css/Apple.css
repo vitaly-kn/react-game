@@ -1,9 +1,14 @@
 .Apple {
   position: absolute;
   animation-timing-function: linear;
-  /*animation-iteration-count: infinite;*/
   animation-name: left-right-frames;
   z-index: 2;
+}
+
+.freeze,
+.freeze .Apple,
+.freeze .apple-image {
+  animation-play-state: paused;
 }
 
 @keyframes left-right-frames {
@@ -18,7 +23,6 @@
 .apple-image {
   position: absolute;
   animation-timing-function: ease-out;
-  /*animation-iteration-count: infinite;*/
   animation-duration: 3s;
   top: 49rem;
   width: 3.5rem;
@@ -47,12 +51,10 @@
 
 .trajectory2 {
   animation-duration: 9s;
-  /*animation-delay: 4.3s;*/
 }
 
 .trajectory2 .apple-image {
   animation-name: up-down-frames2;
-  /*animation-delay: 4.3s;*/
 }
 @keyframes up-down-frames2 {
   0% {
@@ -69,12 +71,10 @@
 
 .trajectory3 {
   animation-duration: 12s;
-  /*animation-delay: 7.4s;*/
 }
 
 .trajectory3 .apple-image {
   animation-name: up-down-frames3;
-  /*animation-delay: 7.4s;*/
 }
 @keyframes up-down-frames3 {
   0% {

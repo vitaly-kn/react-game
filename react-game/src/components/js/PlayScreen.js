@@ -23,11 +23,10 @@ function PlayScreen(props) {
   }
 
   let [apples, setNewApples] = useState([]);
-  let boardCoords = { left: 0, right: 0 };
+  let [board, setBoard] = useState(null);
 
-  function onNewBoardCoords(coords) {
-    boardCoords = coords;
-    //console.log(boardCoords);
+  function getBoardInstance(DOMElement) {
+    setBoard(DOMElement);
   }
 
   function onCadence() {
@@ -43,7 +42,8 @@ function PlayScreen(props) {
   useEffect(() => cadencer.start());
 
   function onAppleAnimationEnd(event) {
-    let animation = event.animationName;
+    //event.currentTarget.classList.add("freeze");
+    const animation = event.animationName;
     if (animation === animationWin) {
       props.incScore();
       const key = event.target.dataset.key;
@@ -56,13 +56,9 @@ function PlayScreen(props) {
       if (isAppleAndBoardCollide()) {
         restartVerticalAnimation();
       }
-      /*
-      console.log("boardCoords");
-      console.log(boardCoords);
-      console.log("apple coords");
-      console.log(getAppleBorders());
-      */
     }
+
+    //event.currentTarget.classList.remove("freeze");
 
     function restartVerticalAnimation() {
       event.currentTarget.classList.remove(`trajectory${animation[animation.length - 1]}`);
@@ -70,16 +66,19 @@ function PlayScreen(props) {
       event.currentTarget.classList.add(`trajectory${animation[animation.length - 1]}`);
     }
 
-    function getAppleBorders() {
+    function getBorders(DOMElement) {
       return {
-        left: event.target.getBoundingClientRect().left,
-        right: event.target.getBoundingClientRect().right,
+        left: DOMElement.getBoundingClientRect().left,
+        right: DOMElement.getBoundingClientRect().right,
       };
     }
 
     function isAppleAndBoardCollide() {
-      const appleBorders = getAppleBorders();
-      return (appleBorders.left < boardCoords.right && appleBorders.left > boardCoords.left) || (appleBorders.right > boardCoords.left && appleBorders.right < boardCoords.right);
+      const appleBorders = getBorders(event.target);
+      const boardBorders = getBorders(board);
+      return (
+        (appleBorders.left < boardBorders.right && appleBorders.left > boardBorders.left) || (appleBorders.right > boardBorders.left && appleBorders.right < boardBorders.right)
+      );
     }
   }
 
@@ -92,7 +91,7 @@ function PlayScreen(props) {
           return <Apple onAnimationEnd={onAppleAnimationEnd} key={apple.key} dataKey={apple.key} color={apple.color} trajectory={apple.trajectory} />;
         })}
       </div>
-      <Board onNewBoardCoords={onNewBoardCoords} />
+      <Board getBoardInstance={getBoardInstance} />
     </div>
   );
 }

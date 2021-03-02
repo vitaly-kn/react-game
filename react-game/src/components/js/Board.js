@@ -42,13 +42,13 @@ function Board(props) {
     };
   });
 
-  useEffect(() => {
-    const boardImageRect = document.getElementById("board-image").getBoundingClientRect();
-    props.onNewBoardCoords({
-      left: boardImageRect.left,
-      right: boardImageRect.right,
-    });
-  });
+  useEffect(
+    () => {
+      props.getBoardInstance(document.getElementById("board-image"));
+    },
+    // eslint-disable-next-line
+    []
+  );
 
   function onBoardTrackClick(event) {
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
