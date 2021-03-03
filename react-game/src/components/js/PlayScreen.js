@@ -30,7 +30,7 @@ function PlayScreen(props) {
   }
 
   function addNewApple() {
-    console.log(`tick!`);
+    //console.log(`tick!`);
     const color = colors[getRandomInt(0, colors.length - 1)];
     const trajectory = trajectories[getRandomInt(0, trajectories.length - 1)];
     setNewApples([...apples, { color, trajectory, key: Date.now() }]);
@@ -40,32 +40,36 @@ function PlayScreen(props) {
   cadencer.setCallback(addNewApple);
 
   useEffect(() => {
-    console.log("check active and pause!");
+    //console.log("check active and pause!");
     if (active) {
-      console.log("active!");
+      //console.log("active!");
       if (!pause) {
-        console.log("not paused!");
+        //console.log("not paused!");
         document.getElementById("appleContainer").classList.remove("freeze");
         cadencer.start();
       } else {
-        console.log("paused!");
+        //console.log("paused!");
         document.getElementById("appleContainer").classList.add("freeze");
         cadencer.stop();
       }
     } else {
-      console.log("not active!");
+      //console.log("not active!");
       document.getElementById("appleContainer").classList.add("freeze");
       cadencer.stop();
     }
   }, [active, pause]);
 
-  useEffect(() => {
-    if (restart) {
-      console.log("restarted!");
-      setNewApples([]);
-      setRestart(false);
-    }
-  }, [restart]);
+  useEffect(
+    () => {
+      if (restart) {
+        //console.log("restarted!");
+        setNewApples([]);
+        setRestart(false);
+      }
+    },
+    // eslint-disable-next-line
+    [restart]
+  );
 
   function onAppleAnimationEnd(event) {
     const animation = event.animationName;

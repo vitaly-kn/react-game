@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../css/Game.css";
 import PlayScreen from "./PlayScreen";
 import ControlsBox from "./ControlsBox";
+import GameOver from "./GameOver";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { GameContext } from "./contexts";
 
@@ -13,6 +14,7 @@ function Game() {
   let [pause, setPause] = useState(true);
   let [active, setActive] = useState(false);
   let [restart, setRestart] = useState(true);
+  let [gameOver, setGameOver] = useState(false);
 
   let [fullScreenMode, setFullScreenMode] = useState(false);
   const fullScreenHandle = useFullScreenHandle();
@@ -26,15 +28,18 @@ function Game() {
   }
 
   useEffect(() => {
-    if (!tries) setActive(false);
+    if (!tries) {
+      setActive(false);
+      setGameOver(true);
+    }
   }, [tries]);
 
   useEffect(() => {
-    if (!active) {
+    if (restart) {
       setScore(0);
       setTries(START_TRIES);
     }
-  }, [active]);
+  }, [restart]);
 
   function fullScreenToggler() {
     setFullScreenMode(!fullScreenMode);
@@ -47,10 +52,11 @@ function Game() {
 
   return (
     <FullScreen handle={fullScreenHandle}>
-      <GameContext.Provider value={{ pause, setPause, active, setActive, restart, setRestart }}>
+      <GameContext.Provider value={{ pause, setPause, active, setActive, restart, setRestart, gameOver, setGameOver }}>
         <div className="Game">
           <PlayScreen incScore={incScore} decTries={decTries} />
           <ControlsBox score={score} tries={tries} fullScreenToggler={fullScreenToggler} />
+          {gameOver && <GameOver score={score} />}
         </div>
       </GameContext.Provider>
     </FullScreen>

@@ -10,6 +10,7 @@ function ControlsBox(props) {
   let { pause, setPause } = useContext(GameContext);
   let { active, setActive } = useContext(GameContext);
   let { setRestart } = useContext(GameContext);
+  let { setGameOver } = useContext(GameContext);
 
   function newGame() {
     if (active) setRestart(true);
@@ -19,7 +20,8 @@ function ControlsBox(props) {
 
   function endGame() {
     setActive(false);
-    setRestart(true);
+    //setRestart(true);
+    setGameOver(true);
   }
 
   function toggleFullScreen() {
