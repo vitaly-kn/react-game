@@ -1,10 +1,9 @@
-//import dresser from "../../assets/img/dresser.svg";
-//import stove from "../../assets/img/stove.svg";
 import "../css/PlayScreen.css";
 import Cadencer from "./Cadencer";
 import Apple from "./Apple";
 import Board from "./Board";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { GameContext } from "./contexts";
 
 const BASIC_CADENCE = 10000;
 let cadencer = new Cadencer(null, BASIC_CADENCE);
@@ -14,8 +13,6 @@ const animationWin = "left-right-frames";
 const animationsJumpTemplate = "up-down-frames";
 
 function PlayScreen(props) {
-  //console.log("PlayScreen!");
-
   function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -24,13 +21,16 @@ function PlayScreen(props) {
 
   let [apples, setNewApples] = useState([]);
   let [board, setBoard] = useState(null);
+  let { pause } = useContext(GameContext);
+  let { active } = useContext(GameContext);
+  let { restart, setRestart } = useContext(GameContext);
 
   function getBoardInstance(DOMElement) {
     setBoard(DOMElement);
   }
 
   function addNewApple() {
-    //console.log(`tick!`);
+    console.log(`tick!`);
     const color = colors[getRandomInt(0, colors.length - 1)];
     const trajectory = trajectories[getRandomInt(0, trajectories.length - 1)];
     setNewApples([...apples, { color, trajectory, key: Date.now() }]);
@@ -39,10 +39,35 @@ function PlayScreen(props) {
 
   cadencer.setCallback(addNewApple);
 
-  useEffect(() => cadencer.start());
+  useEffect(() => {
+    console.log("check active and pause!");
+    if (active) {
+      console.log("active!");
+      if (!pause) {
+        console.log("not paused!");
+        document.getElementById("appleContainer").classList.remove("freeze");
+        cadencer.start();
+      } else {
+        console.log("paused!");
+        document.getElementById("appleContainer").classList.add("freeze");
+        cadencer.stop();
+      }
+    } else {
+      console.log("not active!");
+      document.getElementById("appleContainer").classList.add("freeze");
+      cadencer.stop();
+    }
+  }, [active, pause]);
+
+  useEffect(() => {
+    if (restart) {
+      console.log("restarted!");
+      setNewApples([]);
+      setRestart(false);
+    }
+  }, [restart]);
 
   function onAppleAnimationEnd(event) {
-    //event.currentTarget.classList.add("freeze");
     const animation = event.animationName;
     if (animation === animationWin) {
       props.incScore();
@@ -102,10 +127,5 @@ function PlayScreen(props) {
     </div>
   );
 }
-
-/*
-<img className="dresser" src={dresser} alt="dresser" />
-<img className="stove" src={stove} alt="stove" />
-*/
 
 export default PlayScreen;

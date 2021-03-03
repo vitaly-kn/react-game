@@ -2,7 +2,7 @@ import "../css/Button.css";
 
 function Button(props) {
   return (
-    <button className="Button" id={props.id} onClick={props.onClick}>
+    <button disabled={props.disabled === "true" ? true : false} className="Button" id={props.id} onClick={props.onClick}>
       {props.caption}
     </button>
   );
