@@ -7,9 +7,6 @@ import Settings from "./Settings";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import { GameContext } from "./contexts";
 
-//const START_TRIES = 3;
-//const BASIC_CADENCE = 10000;
-
 const initialValues = {
   tries: 3,
   cadence: 10000,

@@ -21,7 +21,6 @@ function ControlsBox(props) {
 
   function endGame() {
     setActive(false);
-    //setRestart(true);
     setGameOver(true);
   }
 
@@ -70,7 +69,6 @@ function ControlsBox(props) {
         <Button disabled={`${!active}`} id="end" caption="End" onClick={endGame} />
         <Button disabled="false" id="settings" caption="Settings" onClick={showSettings} />
         <Button disabled="false" id="fullscreen" caption={fullScreenCaption} onClick={toggleFullScreen} />
-        <Button disabled="true" id="howto" caption="How To Play" />
       </div>
     </div>
   );

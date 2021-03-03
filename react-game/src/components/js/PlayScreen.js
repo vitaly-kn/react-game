@@ -4,6 +4,11 @@ import Apple from "./Apple";
 import Board from "./Board";
 import { useEffect, useState, useContext } from "react";
 import { GameContext } from "./contexts";
+import useSound from "use-sound";
+import bonusSfxFile from "../../assets/sound/bonus.wav";
+import failSfxFile from "../../assets/sound/fail.wav";
+import kickSfxFile from "../../assets/sound/kick.wav";
+import respawnSfxFile from "../../assets/sound/respawn.wav";
 
 let cadencer = new Cadencer();
 const colors = ["red", "yellow", "green"];
@@ -24,36 +29,41 @@ function PlayScreen(props) {
   let { active } = useContext(GameContext);
   let { restart, setRestart } = useContext(GameContext);
   let { cadence } = useContext(GameContext);
+  let { soundEnabled } = useContext(GameContext);
+  const [bonusSfx] = useSound(bonusSfxFile);
+  const [failSfx] = useSound(failSfxFile);
+  const [kickSfx] = useSound(kickSfxFile);
+  const [respawnSfx] = useSound(respawnSfxFile);
+
+  function playSound(sound) {
+    if (soundEnabled === "true") {
+      sound();
+    }
+  }
 
   function getBoardInstance(DOMElement) {
     setBoard(DOMElement);
   }
 
   function addNewApple() {
-    //console.log(`tick!`);
     const color = colors[getRandomInt(0, colors.length - 1)];
     const trajectory = trajectories[getRandomInt(0, trajectories.length - 1)];
     setNewApples([...apples, { color, trajectory, key: Date.now() }]);
-    return;
+    playSound(respawnSfx);
   }
 
   cadencer.setCallback(addNewApple);
 
   useEffect(() => {
-    //console.log("check active and pause!");
     if (active) {
-      //console.log("active!");
       if (!pause) {
-        //console.log("not paused!");
         document.getElementById("appleContainer").classList.remove("freeze");
         cadencer.start();
       } else {
-        //console.log("paused!");
         document.getElementById("appleContainer").classList.add("freeze");
         cadencer.stop();
       }
     } else {
-      //console.log("not active!");
       document.getElementById("appleContainer").classList.add("freeze");
       cadencer.stop();
     }
@@ -61,13 +71,11 @@ function PlayScreen(props) {
 
   useEffect(() => {
     cadencer.setCadence(cadence);
-    //console.log(`new cadence : ${cadence}`);
   }, [cadence]);
 
   useEffect(
     () => {
       if (restart) {
-        //console.log("restarted!");
         setNewApples([]);
         setRestart(false);
       }
@@ -80,15 +88,18 @@ function PlayScreen(props) {
     const animation = event.animationName;
     if (animation === animationWin) {
       props.incScore();
+      playSound(bonusSfx);
       removeApple();
     } else if (animation.includes(animationsJumpTemplate)) {
       if (isAppleAndBoardCollide()) {
         restartVerticalAnimation();
+        playSound(kickSfx);
       } else {
         event.currentTarget.classList.add("fall");
       }
     } else {
       props.decTries();
+      playSound(failSfx);
       removeApple();
     }
 
