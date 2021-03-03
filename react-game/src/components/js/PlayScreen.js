@@ -1,5 +1,5 @@
-import dresser from "../../assets/img/dresser.svg";
-import stove from "../../assets/img/stove.svg";
+//import dresser from "../../assets/img/dresser.svg";
+//import stove from "../../assets/img/stove.svg";
 import "../css/PlayScreen.css";
 import Cadencer from "./Cadencer";
 import Apple from "./Apple";
@@ -54,6 +54,7 @@ function PlayScreen(props) {
         event.currentTarget.classList.add("fall");
       }
     } else {
+      props.decTries();
       removeApple();
     }
 
@@ -90,8 +91,8 @@ function PlayScreen(props) {
 
   return (
     <div className="PlayScreen">
-      <img className="dresser" src={dresser} alt="dresser" />
-      <img className="stove" src={stove} alt="stove" />
+      <div className="dresser"></div>
+      <div className="stove"></div>
       <div className="appleContainer" id="appleContainer">
         {apples.map((apple) => {
           return <Apple onAnimationEnd={onAppleAnimationEnd} key={apple.key} dataKey={apple.key} color={apple.color} trajectory={apple.trajectory} />;
@@ -101,5 +102,10 @@ function PlayScreen(props) {
     </div>
   );
 }
+
+/*
+<img className="dresser" src={dresser} alt="dresser" />
+<img className="stove" src={stove} alt="stove" />
+*/
 
 export default PlayScreen;

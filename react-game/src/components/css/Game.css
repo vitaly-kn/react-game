@@ -14,3 +14,8 @@
   overflow: hidden;
   text-align: center;
 }
+
+.fullscreen-enabled .Game {
+  width: 100%;
+  height: 100%;
+}

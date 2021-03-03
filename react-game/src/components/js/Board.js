@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 
 const boardStep = 9;
 const boardWidth = 15; //in rem
-const maxBoardLeft = 36;
 
 function Board(props) {
   let [left, setLeft] = useState(0);
   let [keyStuck, setStuck] = useState(false);
+  let [maxBoardLeft, setMaxBoardLeft] = useState(0);
 
   useEffect(() => {
     function onKeyDown(event) {
@@ -50,6 +50,16 @@ function Board(props) {
     []
   );
 
+  // eslint-disable-next-line
+  useEffect(() => {
+    function getMaxBoardLeftPosition() {
+      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const board = document.getElementById("board");
+      return (board.getBoundingClientRect().right - board.getBoundingClientRect().left) / rem - boardWidth;
+    }
+    setMaxBoardLeft(getMaxBoardLeftPosition());
+  });
+
   function onBoardTrackClick(event) {
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
     let newLeft = (event.clientX - event.currentTarget.getBoundingClientRect().x) / rem - boardWidth / 2;
@@ -59,7 +69,7 @@ function Board(props) {
   }
 
   return (
-    <div className="Board" onClick={onBoardTrackClick}>
+    <div className="Board" id="board" onClick={onBoardTrackClick}>
       <img className="board-image" id="board-image" style={{ left: `${left}rem` }} src={board} alt="board" />
     </div>
   );

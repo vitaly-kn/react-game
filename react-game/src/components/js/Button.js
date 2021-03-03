@@ -2,7 +2,7 @@ import "../css/Button.css";
 
 function Button(props) {
   return (
-    <button className="Button" id={props.id}>
+    <button className="Button" id={props.id} onClick={props.onClick}>
       {props.caption}
     </button>
   );

@@ -1,5 +1,6 @@
 .Apple {
   position: absolute;
+  height: 100%;
   animation-timing-function: linear;
   animation-name: left-right-frames;
   z-index: 2;
@@ -24,7 +25,7 @@
   position: absolute;
   animation-timing-function: ease-out;
   animation-duration: 3s;
-  top: 49rem;
+  top: 85.07%;
   width: 3.5rem;
 }
 
@@ -38,14 +39,14 @@
 
 @keyframes up-down-frames1 {
   0% {
-    top: 49rem;
+    top: 85.07%;
   }
   50% {
     animation-timing-function: ease-in;
-    top: 7.7rem;
+    top: 13.37%;
   }
   100% {
-    top: 49rem;
+    top: 85.07%;
   }
 }
 
@@ -58,14 +59,14 @@
 }
 @keyframes up-down-frames2 {
   0% {
-    top: 49rem;
+    top: 85.07%;
   }
   50% {
     animation-timing-function: ease-in;
-    top: 15rem;
+    top: 26.04%;
   }
   100% {
-    top: 49rem;
+    top: 85.07%;
   }
 }
 
@@ -78,14 +79,14 @@
 }
 @keyframes up-down-frames3 {
   0% {
-    top: 49rem;
+    top: 85.07%;
   }
   50% {
     animation-timing-function: ease-in;
-    top: 20rem;
+    top: 34.72%;
   }
   100% {
-    top: 49rem;
+    top: 85.07%;
   }
 }
 
@@ -97,6 +98,6 @@
 
 @keyframes fall-frames {
   to {
-    top: 60rem;
+    top: 104%;
   }
 }

@@ -1,16 +1,16 @@
 .Board {
   position: absolute;
-  top: 48rem;
+  top: 83.3%;
   left: 19%;
   width: 66%;
-  height: 9rem;
+  height: 15.6%;
   z-index: 1;
 }
 
 .board-image {
   width: 15rem;
   position: absolute;
-  top: 3rem;
+  top: 33.3%;
   left: 0;
   transition: left 0.3s linear;
   pointer-events: none;

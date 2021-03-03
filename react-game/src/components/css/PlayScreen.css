@@ -1,6 +1,6 @@
 .PlayScreen {
   position: relative;
-  flex-basis: 76.8rem;
+  flex-basis: 75%;
   height: 100%;
   overflow: hidden;
   background-image: url("../../assets/img/kitchen.jpg");
@@ -13,18 +13,28 @@
   position: absolute;
   top: 51.5%;
   left: -21%;
-  height: 50rem;
+  height: 88.35%;
+  width: 39.75%;
   z-index: 3;
   pointer-events: none;
+  background-image: url("../../assets/img/dresser.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .stove {
   position: absolute;
   top: 50%;
   left: 82%;
-  height: 33rem;
+  height: 58.31%;
+  width: 44.14%;
   z-index: 3;
   pointer-events: none;
+  background-image: url("../../assets/img/stove.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .appleContainer {
