@@ -5,8 +5,7 @@ import Board from "./Board";
 import { useEffect, useState, useContext } from "react";
 import { GameContext } from "./contexts";
 
-const BASIC_CADENCE = 10000;
-let cadencer = new Cadencer(null, BASIC_CADENCE);
+let cadencer = new Cadencer();
 const colors = ["red", "yellow", "green"];
 const trajectories = ["trajectory1", "trajectory2", "trajectory3"];
 const animationWin = "left-right-frames";
@@ -24,6 +23,7 @@ function PlayScreen(props) {
   let { pause } = useContext(GameContext);
   let { active } = useContext(GameContext);
   let { restart, setRestart } = useContext(GameContext);
+  let { cadence } = useContext(GameContext);
 
   function getBoardInstance(DOMElement) {
     setBoard(DOMElement);
@@ -58,6 +58,11 @@ function PlayScreen(props) {
       cadencer.stop();
     }
   }, [active, pause]);
+
+  useEffect(() => {
+    cadencer.setCadence(cadence);
+    //console.log(`new cadence : ${cadence}`);
+  }, [cadence]);
 
   useEffect(
     () => {

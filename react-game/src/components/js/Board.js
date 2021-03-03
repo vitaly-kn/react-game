@@ -1,6 +1,7 @@
 import "../css/Board.css";
 import board from "../../assets/img/cutting-board.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { GameContext } from "./contexts";
 
 const boardStep = 9;
 const boardWidth = 15; //in rem
@@ -8,11 +9,13 @@ const boardWidth = 15; //in rem
 function Board(props) {
   let [left, setLeft] = useState(0);
   let [keyStuck, setStuck] = useState(false);
+  let { pause } = useContext(GameContext);
+  let { active } = useContext(GameContext);
   let [maxBoardLeft, setMaxBoardLeft] = useState(0);
 
   useEffect(() => {
     function onKeyDown(event) {
-      if (keyStuck) return;
+      if (!active || pause || keyStuck) return;
       setStuck(true);
       let newLeft = left;
       if (event.keyCode === 37) {
@@ -61,6 +64,7 @@ function Board(props) {
   });
 
   function onBoardTrackClick(event) {
+    if (!active || pause) return;
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
     let newLeft = (event.clientX - event.currentTarget.getBoundingClientRect().x) / rem - boardWidth / 2;
     newLeft = newLeft < 0 ? 0 : newLeft;

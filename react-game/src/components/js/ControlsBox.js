@@ -11,6 +11,7 @@ function ControlsBox(props) {
   let { active, setActive } = useContext(GameContext);
   let { setRestart } = useContext(GameContext);
   let { setGameOver } = useContext(GameContext);
+  let { setSettings } = useContext(GameContext);
 
   function newGame() {
     if (active) setRestart(true);
@@ -22,6 +23,11 @@ function ControlsBox(props) {
     setActive(false);
     //setRestart(true);
     setGameOver(true);
+  }
+
+  function showSettings() {
+    if (active) setPause(true);
+    setSettings(true);
   }
 
   function toggleFullScreen() {
@@ -62,7 +68,7 @@ function ControlsBox(props) {
         <Button disabled="false" id="newgame" caption="New Game" onClick={newGame} />
         <Button disabled={`${!active}`} id="pause" caption={pauseCaption} onClick={togglePause} />
         <Button disabled={`${!active}`} id="end" caption="End" onClick={endGame} />
-        <Button disabled="false" id="settings" caption="Settings" />
+        <Button disabled="false" id="settings" caption="Settings" onClick={showSettings} />
         <Button disabled="false" id="fullscreen" caption={fullScreenCaption} onClick={toggleFullScreen} />
         <Button disabled="true" id="howto" caption="How To Play" />
       </div>
