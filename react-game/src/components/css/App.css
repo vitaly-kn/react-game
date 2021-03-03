@@ -1,0 +1,7 @@
+.App {
+  display: flex;
+  max-width: 1024px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}

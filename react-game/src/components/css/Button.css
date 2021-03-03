@@ -1,0 +1,29 @@
+.Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5rem;
+  line-height: 5rem;
+  color: var(--controls-background-color);
+  border: none;
+  box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+  outline: none;
+  font-family: Acme, sans-serif;
+  margin: 1rem 0;
+}
+
+.Button:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.Button:disabled {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.Button:active {
+  background: rgba(0, 0, 0, 0.8);
+  transform: translateX(0.1rem) translateY(0.1rem);
+  box-shadow: none;
+}

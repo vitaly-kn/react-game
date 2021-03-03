@@ -1,0 +1,103 @@
+.Apple {
+  position: absolute;
+  height: 100%;
+  animation-timing-function: linear;
+  animation-name: left-right-frames;
+  z-index: 2;
+}
+
+.freeze,
+.freeze .Apple,
+.freeze .apple-image {
+  animation-play-state: paused;
+}
+
+@keyframes left-right-frames {
+  from {
+    left: 5%;
+  }
+  to {
+    left: 95%;
+  }
+}
+
+.apple-image {
+  position: absolute;
+  animation-timing-function: ease-out;
+  animation-duration: 3s;
+  top: 85.07%;
+  width: 3.5rem;
+}
+
+.trajectory1 {
+  animation-duration: 15s;
+}
+
+.trajectory1 .apple-image {
+  animation-name: up-down-frames1;
+}
+
+@keyframes up-down-frames1 {
+  0% {
+    top: 85.07%;
+  }
+  50% {
+    animation-timing-function: ease-in;
+    top: 13.37%;
+  }
+  100% {
+    top: 85.07%;
+  }
+}
+
+.trajectory2 {
+  animation-duration: 9s;
+}
+
+.trajectory2 .apple-image {
+  animation-name: up-down-frames2;
+}
+@keyframes up-down-frames2 {
+  0% {
+    top: 85.07%;
+  }
+  50% {
+    animation-timing-function: ease-in;
+    top: 26.04%;
+  }
+  100% {
+    top: 85.07%;
+  }
+}
+
+.trajectory3 {
+  animation-duration: 12s;
+}
+
+.trajectory3 .apple-image {
+  animation-name: up-down-frames3;
+}
+@keyframes up-down-frames3 {
+  0% {
+    top: 85.07%;
+  }
+  50% {
+    animation-timing-function: ease-in;
+    top: 34.72%;
+  }
+  100% {
+    top: 85.07%;
+  }
+}
+
+.fall .apple-image {
+  animation-name: fall-frames;
+  animation-timing-function: linear;
+  animation-duration: 0.27s;
+}
+
+@keyframes fall-frames {
+  to {
+    top: 104%;
+  }
+}
